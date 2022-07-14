@@ -13,6 +13,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from os import path, getenv
 from dotenv import load_dotenv
+import sys
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase'
+    }
 
 load_dotenv()
 
@@ -81,12 +87,14 @@ WSGI_APPLICATION = 'djangoproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'CONN_MAX_AGE': 500,
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd2ok88dthok61s',
+        'USER': 'weiyzfnhcabcut',
+        'PASSWORD': getenv('HEROKU_POSTGRES_PASSWORD'),
+        'HOST': 'ec2-3-248-121-12.eu-west-1.compute.amazonaws.com',
+        'PORT': 5432,
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -156,3 +164,10 @@ THUMBNAIL_DEFAULT_OPTIONS = {'quality': 100}
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase'
+    }
