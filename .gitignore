@@ -1,0 +1,6 @@
+/.idea/
+/venv/
+/djangogramm/__pycache__/
+/djangoproject/__pycache__/
+/djangoproject/.env
+/djangogramm/static/admin/

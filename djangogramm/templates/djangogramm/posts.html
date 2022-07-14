@@ -1,0 +1,26 @@
+{% load bootstrap_icons %}
+
+{% for post in posts %}
+    <div class="post">
+        <div class="feed_user">
+            {% if post.user.profile_photo %}
+           <img src="{{ post.user.profile_photo.url }}" alt="Не работает">
+            {% endif %}
+           <h1><a href="{% url 'user' user_slug=post.user.slug %}">{{ post.user.username }}</a></h1>
+           <h5>{{ post.created_date }}</h5>
+        </div>
+        <div class="post_content">
+        {% for image in post.images.all %}
+            <img src="{{image.image.url}}" alt="OOps">
+        {% endfor %}
+        <h4>{{ post.text }}</h4>
+            <form action="{% url 'post_like' %}" class="like_form" method="post">{% csrf_token %}
+                <button type="submit" class="{% if user in post.likes.all %}liked{% else %}not_liked{% endif %}"
+                        data-post_id={{post.id}}
+                        data-user_id={{user.id}}
+                >{% bs_icon 'heart-fill' size='1em' %}<span>{{post.likes.count}}</span></button>
+            </form>
+        </div>
+    </div>
+    <hr>
+{% endfor %}

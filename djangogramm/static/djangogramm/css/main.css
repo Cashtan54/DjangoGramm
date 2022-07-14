@@ -1,0 +1,73 @@
+body {
+    background: #5F9EA0;
+}
+
+aside {
+    float: left;
+    background: #B8860B;
+    width: 20%;
+    padding: 2%;
+    height: auto;
+    color: #fff;
+    border-right: 5px solid #00008B;
+}
+
+aside img {
+    width: 120px;
+    margin-left: 40px;
+}
+
+aside .logo {
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+    top: -5px;
+}
+
+aside li {
+    color: #fff;
+}
+
+aside ul {
+    list-style-type: none;
+}
+
+#user{
+    height: 300px;
+}
+
+.avatar {
+    float: right;
+}
+
+.post {
+    weight:80%;
+    height: auto;
+    padding: 2%;
+    padding-right: 0%;
+    padding-top: 0%;
+    text-align: left;
+}
+
+.post_content {
+    padding-left: 18%;
+}
+
+.feed_user {
+    float: right;
+    weight: 200px;
+    padding-right: 1%
+
+}
+
+.like_form button{
+    font-size: 24px;
+}
+
+.like_form button.liked {
+    background: red;
+}
+
+.like_form button.not_liked {
+    background: white;
+}

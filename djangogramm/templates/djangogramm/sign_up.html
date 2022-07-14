@@ -1,0 +1,16 @@
+{% extends 'djangogramm/base.html' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <h4>Already have an account?</h4>
+    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+
+    {% endblock %}

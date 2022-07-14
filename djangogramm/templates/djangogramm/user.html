@@ -1,0 +1,25 @@
+{% extends 'djangogramm/base.html' %}
+{% load bootstrap_icons %}
+
+
+{% block title %}{{ profile.username }}{% endblock %}
+
+{% block content %}
+<div id="user">
+    {% if profile.profile_photo %}
+        <img src="{{ profile.profile_photo.url }}" alt="Не работает" class="avatar">
+    {% endif %}
+    <h1>{{ profile.username }}</h1>
+    {% if profile.bio %}
+    <p><h3>{{ profile.bio }}</h3></p>
+    {% endif %}
+    {% if user.username == profile.username %}
+    <a href="{% url 'user_edit' %}" class="btn btn-primary">Edit profile</a>
+    <a href="{% url 'create_post' %}" class="btn btn-primary">Create post</a>
+    {% endif %}
+    </div>
+<br><br><br><br>
+<h2>My posts</h2>
+<br>
+{% include 'djangogramm/posts.html' %}
+{% endblock %}
