@@ -1,4 +1,5 @@
 from django.contrib.auth.backends import ModelBackend, UserModel
+from django.core.signing import Signer
 from django.db.models import Q
 from re import findall
 from .models import Post, Image, Tag
@@ -34,13 +35,15 @@ def save_image_to_post(post, images):
 def save_tags_to_post(post, text):
     tags = [tag.lower() for tag in findall(r'#[\w\d_]+', text)]
     for tag in tags:
-        tag_in_base = Tag.objects.get_or_create(name=tag)[0]
+        tag_in_base, _ = Tag.objects.get_or_create(name=tag)
         post.tags.add(tag_in_base)
 
 
-def send_email(email, username, validate_key):
+def send_email(email, username):
     # send email using the self.cleaned_data dictionary
     subject = 'Welcome to DjangoGramm'
-    link = f'http://djangogramm-romantsov.herokuapp.com/sign_up/{username}/{validate_key}'
+    signer = Signer(salt='django')
+    key = signer.sign(email)
+    link = f'http://djangogramm-romantsov.herokuapp.com/sign_up/{username}/{key}'
     message = f'Click the link to validate email adress\n{link}'
     send_mail(subject, message, settings.EMAIL_HOST_USER, [email, ])

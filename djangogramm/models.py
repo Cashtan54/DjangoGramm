@@ -21,11 +21,6 @@ def rename_media(instance, filename):
     return f'media/{today.strftime("%Y/%m/%d")}/{rename}'
 
 
-def validate_key_generator():
-    symbols = string.digits + string.ascii_letters
-    return ''.join(choices(symbols, k=20))
-
-
 class User(AbstractUser):
     email = models.EmailField(unique=True, db_index=True)
     slug = AutoSlugField(populate_from='username', unique=True, verbose_name='URL')
@@ -34,7 +29,6 @@ class User(AbstractUser):
                                           blank=True,
                                           thumbnail_storage=S3Boto3Storage,
                                           resize_source=dict(size=(250, 250)))
-    validation_key = models.CharField(max_length=20, default=validate_key_generator())
 
     def __str__(self):
         return self.username

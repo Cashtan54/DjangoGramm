@@ -71,3 +71,7 @@ aside ul {
 .like_form button.not_liked {
     background: white;
 }
+
+container ul {
+    list-style-type: none;
+}

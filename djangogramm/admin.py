@@ -25,7 +25,7 @@ class UserAdmin(admin.ModelAdmin):
         'is_active',
         'date_joined',
     )
-    raw_id_fields = ('groups', 'user_permissions')
+    filter_horizontal = ('groups', 'user_permissions')
     search_fields = ('slug',)
 
 
@@ -33,7 +33,6 @@ class UserAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'created_date', 'text')
     list_filter = ('user', 'created_date')
-    raw_id_fields = ('likes', 'tags')
 
 
 @admin.register(Image)
