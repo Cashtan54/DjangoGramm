@@ -47,17 +47,34 @@ aside ul {
     padding-right: 0%;
     padding-top: 0%;
     text-align: left;
+    margin: 5px;
 }
 
 .post_content {
     padding-left: 18%;
 }
 
+.news {
+    weight:80%;
+    height: auto;
+    padding: 2%;
+    padding-right: 0%;
+    padding-top: 0%;
+    text-align: left;
+    padding-left: 18%;
+    font-size: 24px;
+}
+
+.news_user {
+    color: black;
+}
+
 .feed_user {
     float: right;
     weight: 200px;
-    padding-right: 1%
-
+    height: auto;
+    padding-right: 1%;
+    height: auto;
 }
 
 .like_form button{
@@ -69,6 +86,18 @@ aside ul {
 }
 
 .like_form button.not_liked {
+    background: white;
+}
+
+.follow_form button {
+    font-size: 24px;
+}
+
+.follow_form button.followed {
+    background: blue;
+}
+
+.follow_form button.not_followed {
     background: white;
 }
 

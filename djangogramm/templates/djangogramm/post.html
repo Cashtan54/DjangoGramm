@@ -1,7 +1,11 @@
+{% extends 'djangogramm/base.html' %}
 {% load bootstrap_icons %}
 
-{% for post in posts %}
-    <div class="post">
+{% block title %}Post{% endblock %}
+
+{% block content %}
+
+<div class="post">
         <div class="feed_user">
             {% if post.user.profile_photo %}
            <img src="{{ post.user.profile_photo.url }}" alt="Не работает">
@@ -22,6 +26,5 @@
             </form>
         </div>
     </div>
-    <br>
-    <hr>
-{% endfor %}
+
+{% endblock %}

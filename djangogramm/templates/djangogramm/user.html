@@ -13,9 +13,24 @@
     {% if profile.bio %}
     <p><h3>{{ profile.bio }}</h3></p>
     {% endif %}
+    <h3>Followers: <span id="followers_counter">{{number_followers}}</span></h3>
     {% if user.username == profile.username %}
     <a href="{% url 'user_edit' %}" class="btn btn-primary">Edit profile</a>
     <a href="{% url 'create_post' %}" class="btn btn-primary">Create post</a>
+    {% else %}
+        {% if is_followed %}
+        <form action="{% url 'follow' %}" class="follow_form" method="post">{% csrf_token %}
+            <button type="submit" class="followed"
+                 data-user_to_follow={{profile.id}}>
+                <span>Unfollow</span></button>
+        </form>
+        {% else %}
+            <form action="{% url 'follow' %}" class="follow_form" method="post">{% csrf_token %}
+                <button type="submit" class="not_followed"
+                    data-user_to_follow={{profile.id}}>
+                    <span>Follow</span></button>
+            </form>
+        {% endif %}
     {% endif %}
     </div>
 <br><br><br><br>

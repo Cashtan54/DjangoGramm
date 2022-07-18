@@ -34,6 +34,29 @@ class User(AbstractUser):
         return self.username
 
 
+class Following(models.Model):
+    follower = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='follower')
+    followed = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='followed')
+    time = models.DateTimeField(auto_now=True)
+
+
+class News(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='news')
+    action = models.CharField(max_length=255)
+    time = models.DateTimeField(auto_now=True)
+    followed_user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                      on_delete=models.CASCADE,
+                                      default=None,
+                                      blank=True,
+                                      null=True,
+                                      related_name='news_followed_user')
+    post = models.ForeignKey('Post',
+                             on_delete=models.CASCADE,
+                             default=None,
+                             blank=True,
+                             null=True)
+
+
 class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='my_posts')
     created_date = models.DateTimeField(auto_now_add=True)

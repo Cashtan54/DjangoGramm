@@ -39,7 +39,25 @@ class PostsView(ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        return Post.objects.order_by('-created_date')[:20].select_related('user').prefetch_related('likes', 'images')
+        return (Post.objects.order_by('-created_date')[:20].
+                select_related('user').
+                prefetch_related('likes', 'images'))
+
+
+class PostView(DetailView):
+    model = Post
+    template_name = 'djangogramm/post.html'
+    context_object_name = 'post'
+
+
+class NewsFeed(ListView):
+    model = News
+    template_name = 'djangogramm/news.html'
+    context_object_name = 'news'
+
+    def get_queryset(self):
+        followed_users = [follow.followed for follow in Following.objects.filter(follower=self.request.user)]
+        return News.objects.filter(user__in=followed_users).order_by('-time')[:20].select_related('user')
 
 
 class UserView(LoginRequiredMixin, DetailView):
@@ -55,6 +73,12 @@ class UserView(LoginRequiredMixin, DetailView):
                             select_related('user').
                             prefetch_related('likes', 'images')
                             )
+        is_followed = Following.objects.filter(follower=self.request.user, followed=self.object)
+        if is_followed:
+            context['is_followed'] = True
+        else:
+            context['is_followed'] = False
+        context['number_followers'] = Following.objects.filter(followed=self.object).count()
         return context
 
 
@@ -72,6 +96,7 @@ class UserEdit(LoginRequiredMixin, FormView):
             user.profile_photo = self.request.FILES['profile_photo']
         user.bio = form.cleaned_data['bio']
         user.save()
+        News.objects.create(user=user, action='changed avatar')
         return super().form_valid(form)
 
     def get_initial(self):
@@ -96,6 +121,7 @@ class CreatePost(LoginRequiredMixin, FormView):
         images = self.request.FILES.getlist('images')
         save_image_to_post(post, images)
         save_tags_to_post(post, form.cleaned_data['text'])
+        News.objects.create(user=self.request.user, action='shared a ', post=post)
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -133,6 +159,20 @@ def post_like(request):
     else:
         post.likes.add(user)
     return JsonResponse(data={'status': 200, 'number_likes': post.likes.count()})
+
+
+def follow(request):
+    user_to_follow = User.objects.get(id=request.POST['user_to_follow'])
+    is_followed = Following.objects.filter(follower=request.user, followed=user_to_follow).first()
+    if is_followed:
+        is_followed.delete()
+        News.objects.create(user=request.user, action='unsubscribed from', followed_user=user_to_follow)
+    else:
+        Following.objects.create(follower=request.user, followed=user_to_follow)
+        News.objects.create(user=request.user, action='subscribed to', followed_user=user_to_follow)
+    user_to_follow.refresh_from_db()
+    return JsonResponse(data={'status': 200,
+                              'number_followers': Following.objects.filter(followed=user_to_follow).count()})
 
 
 def noscript(request):

@@ -22,9 +22,11 @@
         <h3>Navigation</h3>
         <ul>
             {% if user.is_authenticated %}
-            <a href="{% url 'user' user_slug=user.slug %}"><li><i></i>My profile</li></a>
+            <a href="{% url 'user' user_slug=user.slug %}"><li>My profile</li></a>
+            <a href="{% url 'news_feed' %}"><li>News</li></a>
             {% else %}
-            <a href="{% url 'login' %}"><li><i></i>My profile</li></a>
+            <a href="{% url 'login' %}"><li>My profile</li></a>
+            <a href="{% url 'login' %}"><li>News</li></a>
             {% endif %}
             <a href="{% url 'feed' %}"><li><i></i>Posts</li></a>
         </ul>
@@ -45,6 +47,7 @@
     <script src="{% static 'djangogramm/js/bootstrap.js' %}"></script>
     <script src="{% static 'djangogramm/js/jquery_like.js' %}"></script>
     <script src="{% static 'djangogramm/js/jquery_func.js' %}"></script>
+    <script src="{% static 'djangogramm/js/jquery_follow.js' %}"></script>
 
 </body>
 </html>
