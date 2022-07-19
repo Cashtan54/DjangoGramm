@@ -91,10 +91,10 @@ WSGI_APPLICATION = 'djangoproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd2ok88dthok61s',
-        'USER': 'weiyzfnhcabcut',
+        'NAME': 'd8134r6g2ak6q3',
+        'USER': 'nzsxykbbjzgjfz',
         'PASSWORD': getenv('HEROKU_POSTGRES_PASSWORD'),
-        'HOST': 'ec2-3-248-121-12.eu-west-1.compute.amazonaws.com',
+        'HOST': 'ec2-52-49-120-150.eu-west-1.compute.amazonaws.com',
         'PORT': 5432,
     }
 }

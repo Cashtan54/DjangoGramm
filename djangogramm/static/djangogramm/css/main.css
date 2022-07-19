@@ -89,7 +89,7 @@ aside li {
 }
 
 .feed_user {
-    float: right;
+    margin-left: auto;
     weight: 200px;
     height: auto;
     padding-right: 1%;
