@@ -1,8 +1,12 @@
 {% extends 'djangogramm/base.html' %}
+{% load cloudinary %}
+
 {% load bootstrap_icons %}
 
 {% block title %}Feed{% endblock %}
 {% block content %}
+{% for post in posts %}
 {% include 'djangogramm/posts.html' %}
+{% endfor %}
 {% endblock %}
 

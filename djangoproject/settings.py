@@ -14,6 +14,11 @@ from pathlib import Path
 from os import path, getenv
 from dotenv import load_dotenv
 import sys
+import cloudinary
+config = cloudinary.config(secure=True)
+
+import cloudinary.uploader
+import cloudinary.api
 
 
 load_dotenv()
@@ -46,6 +51,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'django_bootstrap_icons',
     'debug_toolbar',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -168,3 +174,4 @@ if 'test' in sys.argv:
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'mydatabase'
     }
+

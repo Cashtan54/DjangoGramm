@@ -22,7 +22,8 @@ var form = $('.follow_form');
             success: function(json){
             $(this).removeClass('not_followed').addClass('followed');
             $(this).find('span').text('Unfollow');
-            $('#user').find('#followers_counter').text(json.number_followers);
+            $('#user').find('span.followers_counter').text(json.number_followers);
+            $('div.post_user').find('span.followers_counter').text(json.number_followers)
             }
         })
     });
@@ -43,7 +44,8 @@ var form = $('.follow_form');
             success: function(json){
                 $(this).removeClass('followed').addClass('not_followed');
                 $(this).find('span').text('Follow');
-                $('#user').find('#followers_counter').text(json.number_followers);
+                $('#user').find('span.followers_counter').text(json.number_followers);
+                $('div.post_user').find('span.followers_counter').text(json.number_followers);
             }
         })
     });

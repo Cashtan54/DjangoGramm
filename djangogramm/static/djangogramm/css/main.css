@@ -2,6 +2,10 @@ body {
     background: #5F9EA0;
 }
 
+ul {
+    list-style-type: none;
+}
+
 aside {
     float: left;
     background: #B8860B;
@@ -28,16 +32,14 @@ aside li {
     color: #fff;
 }
 
-aside ul {
-    list-style-type: none;
-}
-
 #user{
     height: 300px;
 }
 
 .avatar {
     float: right;
+    weight: 300px;
+    height: 300px;
 }
 
 .post {
@@ -49,6 +51,23 @@ aside ul {
     text-align: left;
     margin: 5px;
 }
+
+.post_user {
+    float: right;
+    text-align: right;
+}
+
+
+.post_user_img {
+    weight: 200px;
+    height: 200px;
+}
+
+.post_img {
+    weight: 250px;
+    height: 250px;
+}
+
 
 .post_content {
     padding-left: 18%;

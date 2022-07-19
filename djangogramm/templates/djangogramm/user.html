@@ -1,5 +1,7 @@
 {% extends 'djangogramm/base.html' %}
 {% load bootstrap_icons %}
+{% load cloudinary %}
+
 
 
 {% block title %}{{ profile.username }}{% endblock %}
@@ -13,7 +15,7 @@
     {% if profile.bio %}
     <p><h3>{{ profile.bio }}</h3></p>
     {% endif %}
-    <h3>Followers: <span id="followers_counter">{{number_followers}}</span></h3>
+    <h3>Followers: <span class="followers_counter">{{number_followers}}</span></h3>
     {% if user.username == profile.username %}
     <a href="{% url 'user_edit' %}" class="btn btn-primary">Edit profile</a>
     <a href="{% url 'create_post' %}" class="btn btn-primary">Create post</a>
@@ -36,5 +38,7 @@
 <br><br><br><br>
 <h2>My posts</h2>
 <br>
+{% for post in posts %}
 {% include 'djangogramm/posts.html' %}
+{% endfor %}
 {% endblock %}

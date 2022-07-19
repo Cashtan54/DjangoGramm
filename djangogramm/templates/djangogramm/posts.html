@@ -1,18 +1,19 @@
 {% load bootstrap_icons %}
+{% load cloudinary %}
 
-{% for post in posts %}
+
     <div class="post">
-        <div class="feed_user">
+        <div class="post_user">
             {% if post.user.profile_photo %}
-           <img src="{{ post.user.profile_photo.url }}" alt="Не работает">
+           <img src="{{ post.user.profile_photo.url }}" alt="Не работает" class="post_user_img">
             {% endif %}
            <h1><a href="{% url 'user' user_slug=post.user.slug %}">{{ post.user.username }}</a></h1>
-            <h3>Followers: {{ post.user.followed.all.count }}</h3>
+            <h3>Followers: <span class="followers_counter">{{ post.user.followed.all.count }}</span></h3>
            <h5>{{ post.created_date }}</h5>
         </div>
         <div class="post_content">
         {% for image in post.images.all %}
-            <img src="{{image.image.url}}" alt="OOps">
+            <img src="{{image.image.url}}" alt="OOps" class="post_img">
         {% endfor %}
         <h4>{{ post.text }}</h4>
             <form action="{% url 'post_like' %}" class="like_form" method="post">{% csrf_token %}
@@ -24,4 +25,3 @@
     </div>
     <br>
     <hr>
-{% endfor %}

@@ -1,13 +1,13 @@
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
-from django.http import HttpResponseRedirect, JsonResponse, Http404
+from django.http import HttpResponseRedirect, JsonResponse
 from .models import *
 from django.views.generic import CreateView, ListView, DetailView, FormView
 from .forms import *
 from .utils import *
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
+from cloudinary.forms import cl_init_js_callbacks
 
 
 class SignUpView(CreateView):
