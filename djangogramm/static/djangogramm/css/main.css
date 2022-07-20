@@ -14,6 +14,19 @@ aside {
     height: auto;
     color: #fff;
     border-right: 5px solid #00008B;
+    display: inline-block;
+}
+
+aside .menu {
+    font-size: 20px;
+}
+
+aside .menu a {
+    text-decoration: none;
+}
+
+aside .menu a:hover {
+    font-size: 25px;
 }
 
 aside img {
@@ -40,86 +53,4 @@ aside li {
     float: right;
     weight: 300px;
     height: 300px;
-}
-
-.post {
-    weight:80%;
-    height: auto;
-    padding: 2%;
-    padding-right: 0%;
-    padding-top: 0%;
-    text-align: left;
-    margin: 5px;
-}
-
-.post_user {
-    float: right;
-    text-align: right;
-}
-
-
-.post_user_img {
-    weight: 200px;
-    height: 200px;
-}
-
-.post_img {
-    weight: 250px;
-    height: 250px;
-}
-
-
-.post_content {
-    padding-left: 18%;
-}
-
-.news {
-    weight:80%;
-    height: auto;
-    padding: 2%;
-    padding-right: 0%;
-    padding-top: 0%;
-    text-align: left;
-    padding-left: 18%;
-    font-size: 24px;
-}
-
-.news_user {
-    color: black;
-}
-
-.feed_user {
-    margin-left: auto;
-    weight: 200px;
-    height: auto;
-    padding-right: 1%;
-    height: auto;
-}
-
-.like_form button{
-    font-size: 24px;
-}
-
-.like_form button.liked {
-    background: red;
-}
-
-.like_form button.not_liked {
-    background: white;
-}
-
-.follow_form button {
-    font-size: 24px;
-}
-
-.follow_form button.followed {
-    background: blue;
-}
-
-.follow_form button.not_followed {
-    background: white;
-}
-
-container ul {
-    list-style-type: none;
 }

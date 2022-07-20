@@ -1,0 +1,14 @@
+.news {
+    width: 80%;
+    height: auto;
+    margin-left: auto;
+    padding: 1%;
+    font-size: 20px;
+}
+
+.news a:hover {
+    font-size: 25px
+}
+.news_user {
+    color: black;
+}

@@ -1,21 +1,26 @@
 {% load bootstrap_icons %}
 {% load cloudinary %}
+{% load static %}
 
 
     <div class="post">
         <div class="post_user">
             {% if post.user.profile_photo %}
            <img src="{{ post.user.profile_photo.url }}" alt="Не работает" class="post_user_img">
+            {% else %}
+            <img src="{% static 'djangogramm/img/user_icon.png' %}" alt="Не работает" class="post_user_img">
             {% endif %}
-           <h1><a href="{% url 'user' user_slug=post.user.slug %}">{{ post.user.username }}</a></h1>
-            <h3>Followers: <span class="followers_counter">{{ post.user.followed.all.count }}</span></h3>
-           <h5>{{ post.created_date }}</h5>
+            <div class="post_user_data">
+                <a href="{% url 'user' user_slug=post.user.slug %}" class="post_user_link">{{ post.user.username }}</a>
+                <p>Followers: <span class="followers_counter">{{ post.user.followed.all.count }}</span></p>
+                <p class="post_created_date">{{ post.created_date }}</p>
+            </div>
         </div>
         <div class="post_content">
         {% for image in post.images.all %}
             <img src="{{image.image.url}}" alt="OOps" class="post_img">
         {% endfor %}
-        <h4>{{ post.text }}</h4>
+        <p class="post_text">{{ post.text }}</p>
             <form action="{% url 'post_like' %}" class="like_form" method="post">{% csrf_token %}
                 <button type="submit" class="{% if user in post.likes.all %}liked{% else %}not_liked{% endif %}"
                         data-post_id={{post.id}}
@@ -23,5 +28,3 @@
             </form>
         </div>
     </div>
-    <br>
-    <hr>

@@ -1,11 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.conf import settings
 from autoslug.fields import AutoSlugField
 from cloudinary.models import CloudinaryField
 
 
 class User(AbstractUser):
+    username = models.CharField(error_messages={'unique': 'A user with that username already exists.'},
+                                help_text='Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.',
+                                max_length=20, unique=True,
+                                validators=[UnicodeUsernameValidator()],
+                                verbose_name='username')
     email = models.EmailField(unique=True, db_index=True)
     slug = AutoSlugField(populate_from='username', unique=True, verbose_name='URL')
     bio = models.CharField(max_length=250, null=True)

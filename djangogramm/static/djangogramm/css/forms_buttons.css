@@ -1,0 +1,23 @@
+.like_form button{
+    font-size: 24px;
+}
+
+.like_form button.liked {
+    background: red;
+}
+
+.like_form button.not_liked {
+    background: white;
+}
+
+.follow_form button {
+    font-size: 24px;
+}
+
+.follow_form button.followed {
+    background: red;
+}
+
+.follow_form button.not_followed {
+    background: blue;
+}

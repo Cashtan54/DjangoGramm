@@ -1,0 +1,51 @@
+.post {
+    width: 80%;
+    height: auto;
+    text-align: left;
+    border-bottom: 1px solid;
+    margin-left: auto;
+    padding: 1%;
+}
+
+.post_user_data {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.post_user .post_user_img {
+    height: 200px;
+    margin-bottom: auto;
+    margin-left: 10px;
+}
+
+.post_user_link {
+    font-size: 25px;
+    color: black;
+}
+
+.post_user_data a:hover {
+    font-size: 30px;
+}
+
+.followers_counter {
+    font-size: 20px;
+}
+
+.post_created_date {
+    font_size: 15px;
+}
+
+.post_img {
+    height: 250px;
+    margin: 10px;
+}
+
+.post_text {
+    font-size:25px;
+    font-weight: 300;
+    font-family: Impact;
+}
+
+.post_content {
+    margin-top: 5px;
+}

@@ -16,11 +16,7 @@ from dotenv import load_dotenv
 import sys
 import cloudinary
 
-cloudinary.config(
-    cloud_name="dsc8n66p9",
-    api_key=getenv('CLOUDINARY_API_KEY'),
-    api_secret=getenv('CLOUDINARY_API_SECRET'),
-)
+config = cloudinary.config(secure=True)
 
 import cloudinary.uploader
 import cloudinary.api

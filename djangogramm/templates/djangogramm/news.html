@@ -6,7 +6,7 @@
 
 {% block content %}
 {% for new in news %}
-    <div class="news"></div>
+    <div class="news">
         <p><a href="{% url 'user' user_slug=new.user.slug %}" class="news_user">{{new.user.username}}</a>
             {{new.time|naturaltime}}
             {{new.action}}
@@ -14,6 +14,6 @@
             <a href="{% url 'user' user_slug=new.followed_user.slug %}" class="news_user">{{new.followed_user.username}}</a>{% endif %}
             {% if new.post %}
             <a href="{% url 'post' pk=new.post.id %}" class="news_user">post</a> {% endif %}</p>
-    <br>
+    </div>
 {% endfor %}
 {% endblock %}

@@ -1,6 +1,7 @@
 {% load static %}
 {% load bootstrap5 %}
 {% load cloudinary %}
+{% load bootstrap_icons %}
 
 <!doctype html>
 <html lang="en">
@@ -15,22 +16,25 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'djangogramm/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'djangogramm/css/posts.css' %}">
+    <link rel="stylesheet" href="{% static 'djangogramm/css/forms_buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'djangogramm/css/news.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'djangogramm/img/favicon.ico' %}" />
 </head>
 <body>
     <aside>
         <a href="{% url 'feed' %}"><img src="{% static 'djangogramm/img/logo.jpg' %}" alt="Logo"></a>
         <span class="logo">DjangoGramm</span>
-        <h3>Navigation</h3>
-        <ul>
+        <h4>Navigation</h4>
+        <ul class="menu">
             {% if user.is_authenticated %}
-            <a href="{% url 'user' user_slug=user.slug %}"><li>My profile</li></a>
-            <a href="{% url 'news_feed' %}"><li>News</li></a>
+            <a href="{% url 'user' user_slug=user.slug %}"><li>{% bs_icon 'person-video2' %}My profile</li></a>
+            <a href="{% url 'news_feed' %}"><li>{% bs_icon 'newspaper' %}News</li></a>
             {% else %}
-            <a href="{% url 'login' %}"><li>My profile</li></a>
-            <a href="{% url 'login' %}"><li>News</li></a>
+            <a href="{% url 'login' %}"><li><i class="bi bi-person-video2"></i>{% bs_icon 'person-video2' %}My profile</li></a>
+            <a href="{% url 'login' %}"><li>{% bs_icon 'newspaper' %}News</li></a>
             {% endif %}
-            <a href="{% url 'feed' %}"><li><i></i>Posts</li></a>
+            <a href="{% url 'feed' %}"><li><i></i>{% bs_icon 'postcard-heart' %}Posts</li></a>
         </ul>
         {% if user.is_authenticated %}
              <a href="{% url 'logout' %}" class="btn btn-warning">Logout</a>
