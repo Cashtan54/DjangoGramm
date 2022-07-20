@@ -15,7 +15,12 @@ from os import path, getenv
 from dotenv import load_dotenv
 import sys
 import cloudinary
-config = cloudinary.config(secure=True)
+
+cloudinary.config(
+    cloud_name="dsc8n66p9",
+    api_key=getenv('CLOUDINARY_API_KEY'),
+    api_secret=getenv('CLOUDINARY_API_SECRET'),
+)
 
 import cloudinary.uploader
 import cloudinary.api
@@ -155,13 +160,8 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Amazon S3
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_STORAGE_BUCKET_NAME = getenv('AWS_STORAGE_BUCKET_NAME')
-AWS_ACCESS_KEY_ID = getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = getenv('AWS_SECRET_ACCESS_KEY')
-AWS_QUERYSTRING_AUTH = False
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-THUMBNAIL_DEFAULT_OPTIONS = {'quality': 100}
 
 
 INTERNAL_IPS = [

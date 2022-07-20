@@ -177,3 +177,7 @@ def follow(request):
 
 def noscript(request):
     return render(request, 'djangogramm/noscript.html')
+
+
+def handler404(request, exception):
+    return render(request, 'djangogramm/404.html', status=404)

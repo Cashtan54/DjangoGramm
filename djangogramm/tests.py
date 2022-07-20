@@ -1,6 +1,7 @@
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, Client
 from django.conf import settings
+from unittest.mock import patch
 from django.urls import reverse
 from .models import *
 from django.contrib.auth import get_user_model
@@ -11,6 +12,13 @@ from PIL import Image as PIL_Image
 from django.core.files.base import ContentFile
 import shutil
 import tempfile
+import cloudinary
+from cloudinary import CloudinaryResource
+
+
+def test_cloudinary(file, **kwargs):
+    return {'public_id': None, 'version': '1.29.0',
+            'format': None, 'type': None, 'resource_type': None}
 
 
 class Settings(TestCase):
@@ -28,7 +36,7 @@ class Settings(TestCase):
         post_image = Image.objects.create(image=tempfile.NamedTemporaryFile(suffix='.jpg').name,
                                           post=post)
         cls.bytes_img = BytesIO(b'\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x05\x04\x04\x00\x00\x00\x2c\x00'
-                      b'\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00\x3b')
+                                b'\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00\x3b')
 
     @classmethod
     def tearDownClass(cls):
@@ -61,6 +69,7 @@ class SetActiveTest(Settings):
 
 
 class EditUserTest(Settings):
+    @patch('cloudinary.uploader.upload', new=test_cloudinary)
     def test_edit_user(self):
         self.client.force_login(self.user)
         test_image = self.bytes_img
@@ -71,10 +80,11 @@ class EditUserTest(Settings):
         self.user.refresh_from_db()
         self.assertEqual(self.user.bio, 'PRIVET')
         self.assertEqual(response["Location"], reverse('user', args=[self.user.slug]))
-        self.assertIsInstance(self.user.profile_photo, ThumbnailerImageFieldFile)
+        self.assertIsInstance(self.user.profile_photo, CloudinaryResource)
 
 
 class CreatePostTest(Settings):
+    @patch('cloudinary.uploader.upload', new=test_cloudinary)
     def test_create_post(self):
         self.client.force_login(self.user)
         text = 'This is test post #new #post #python #hello. #123hello123 #tag_with_underline'
@@ -91,3 +101,17 @@ class CreatePostTest(Settings):
             tag_from_base = Tag.objects.filter(name=tag).first()
             self.assertIsInstance(tag_from_base, Tag)
 
+
+class FollowTest(Settings):
+    def test_follow(self):
+        self.client.force_login(self.user)
+        User.objects.create(username='Test_user2')
+        user_to_follow_id = User.objects.get(username='Test_user2').id
+        # follow
+        response_follow = self.client.post(reverse('follow'), data={'user_to_follow': user_to_follow_id})
+        self.assertIs(response_follow.status_code, 200)
+        self.assertIs(Following.objects.filter(follower=self.user).count(), 1)
+        # unfollow
+        response_unfollow = self.client.post(reverse('follow'), data={'user_to_follow': user_to_follow_id})
+        self.assertIs(response_unfollow.status_code, 200)
+        self.assertIs(Following.objects.filter(follower=self.user).count(), 0)
