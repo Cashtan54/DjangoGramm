@@ -4,3 +4,8 @@
 /djangoproject/__pycache__/
 /djangoproject/.env
 /djangogramm/static/admin/
+/djangogramm/static/debug_toolbar/
+/djangogramm/static/bootstrap_icons/
+/djangogramm/static/django_extensions/
+/djangogramm/static/html/
+/djangogramm/static/js/

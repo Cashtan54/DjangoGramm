@@ -15,10 +15,8 @@ import tempfile
 import cloudinary
 from cloudinary import CloudinaryResource
 
-
-def test_cloudinary(file, **kwargs):
-    return {'public_id': None, 'version': '1.29.0',
-            'format': None, 'type': None, 'resource_type': None}
+cloudinary_upload_value = {'public_id': None, 'version': '1.29.0',
+                           'format': None, 'type': None, 'resource_type': None}
 
 
 class Settings(TestCase):
@@ -48,12 +46,14 @@ class LikeTest(Settings):
     def test_like(self):
         self.client.force_login(self.user)
         # like
-        response_like = self.client.post(reverse('post_like'), data={'post_id': 1})
-        self.assertIs(response_like.status_code, 200)
+        response_like1 = self.client.post(reverse('post_like'), data={'post_id': 1})
+        response_like2 = self.client.post(reverse('post_like'), data={'post_id': 1})
+        self.assertIs(response_like2.status_code, 200)
         self.assertIs(Post.objects.get(id=1).likes.count(), 1)
         # unlike
-        response_unlike = self.client.post(reverse('post_like'), data={'post_id': 1})
-        self.assertIs(response_unlike.status_code, 200)
+        response_unlike1 = self.client.post(reverse('post_unlike'), data={'post_id': 1})
+        response_unlike2 = self.client.post(reverse('post_unlike'), data={'post_id': 1})
+        self.assertIs(response_unlike2.status_code, 200)
         self.assertIs(Post.objects.get(id=1).likes.count(), 0)
 
 
@@ -69,8 +69,8 @@ class SetActiveTest(Settings):
 
 
 class EditUserTest(Settings):
-    @patch('cloudinary.uploader.upload', new=test_cloudinary)
-    def test_edit_user(self):
+    @patch('cloudinary.uploader.upload', return_value=cloudinary_upload_value)
+    def test_edit_user(self, mock):
         self.client.force_login(self.user)
         test_image = self.bytes_img
         test_image.name = 'myimage.jpg'
@@ -84,8 +84,8 @@ class EditUserTest(Settings):
 
 
 class CreatePostTest(Settings):
-    @patch('cloudinary.uploader.upload', new=test_cloudinary)
-    def test_create_post(self):
+    @patch('cloudinary.uploader.upload', return_value=cloudinary_upload_value)
+    def test_create_post(self, mock):
         self.client.force_login(self.user)
         text = 'This is test post #new #post #python #hello. #123hello123 #tag_with_underline'
         test_image = self.bytes_img
@@ -108,10 +108,19 @@ class FollowTest(Settings):
         User.objects.create(username='Test_user2')
         user_to_follow_id = User.objects.get(username='Test_user2').id
         # follow
-        response_follow = self.client.post(reverse('follow'), data={'user_to_follow': user_to_follow_id})
-        self.assertIs(response_follow.status_code, 200)
+        response_follow_1 = self.client.post(reverse('follow'), data={'user_to_follow': user_to_follow_id})
+        self.assertIs(response_follow_1.status_code, 200)
+        self.assertIs(Following.objects.filter(follower=self.user).count(), 1)
+        # follow again
+        response_follow_2 = self.client.post(reverse('follow'), data={'user_to_follow': user_to_follow_id})
+        self.assertIs(response_follow_2.status_code, 200)
         self.assertIs(Following.objects.filter(follower=self.user).count(), 1)
         # unfollow
-        response_unfollow = self.client.post(reverse('follow'), data={'user_to_follow': user_to_follow_id})
-        self.assertIs(response_unfollow.status_code, 200)
+        response_unfollow_1 = self.client.post(reverse('unfollow'), data={'user_to_follow': user_to_follow_id})
+        self.assertIs(response_unfollow_1.status_code, 200)
         self.assertIs(Following.objects.filter(follower=self.user).count(), 0)
+        # unfollow again
+        response_unfollow_2 = self.client.post(reverse('unfollow'), data={'user_to_follow': user_to_follow_id})
+        self.assertIs(response_unfollow_2.status_code, 200)
+        self.assertIs(Following.objects.filter(follower=self.user).count(), 0)
+

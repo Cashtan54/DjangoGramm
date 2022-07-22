@@ -16,4 +16,5 @@
             <a href="{% url 'post' pk=new.post.id %}" class="news_user">post</a> {% endif %}</p>
     </div>
 {% endfor %}
+{% include 'djangogramm/pagination.html' %}
 {% endblock %}

@@ -6,7 +6,7 @@ var form = $('.like_form');
         data.post_id = $(this).data('post_id');
         var csrf_token = $('.like_form [name="csrfmiddlewaretoken"]').val();
         data["csrfmiddlewaretoken"] = csrf_token;
-        var url = form.attr("action");
+        var url = '/post/like/';
 
         $.ajax({
             url: url,
@@ -31,7 +31,7 @@ var form = $('.like_form');
         data.post_id = $(this).data('post_id');
         var csrf_token = $('.like_form [name="csrfmiddlewaretoken"]').val();
         data["csrfmiddlewaretoken"] = csrf_token;
-        var url = form.attr("action");
+        var url = '/post/unlike/';
 
         $.ajax({
             url: url,

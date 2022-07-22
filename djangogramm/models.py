@@ -22,14 +22,21 @@ class User(AbstractUser):
 
 
 class Following(models.Model):
-    follower = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='follower')
-    followed = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='followed')
+    follower = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='my_followings')
+    followed = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='my_followers')
     time = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('follower', 'followed',)
 
 
 class News(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='news')
-    action = models.CharField(max_length=255)
+    actions = [
+        ('subscribe', 'subscribed to'),
+        ('post', 'shared a ')
+    ]
+    action = models.CharField(max_length=255, choices=actions)
     time = models.DateTimeField(auto_now=True)
     followed_user = models.ForeignKey(settings.AUTH_USER_MODEL,
                                       on_delete=models.CASCADE,
@@ -42,6 +49,9 @@ class News(models.Model):
                              default=None,
                              blank=True,
                              null=True)
+
+    class Meta:
+        verbose_name_plural = 'News'
 
 
 class Post(models.Model):

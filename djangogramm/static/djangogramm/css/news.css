@@ -6,9 +6,10 @@
     font-size: 20px;
 }
 
-.news a:hover {
-    font-size: 25px
-}
 .news_user {
+    color: black;
+}
+
+.news_user:hover {
     color: black;
 }

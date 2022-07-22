@@ -8,6 +8,8 @@ from .forms import *
 from .utils import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from cloudinary.forms import cl_init_js_callbacks
+from django.db.utils import IntegrityError
+from django.db import transaction
 
 
 class SignUpView(CreateView):
@@ -37,9 +39,10 @@ class PostsView(ListView):
     model = Post
     template_name = 'djangogramm/feed.html'
     context_object_name = 'posts'
+    paginate_by = 10
 
     def get_queryset(self):
-        return (Post.objects.order_by('-created_date')[:20].
+        return (Post.objects.order_by('-created_date').
                 select_related('user').
                 prefetch_related('likes', 'images'))
 
@@ -54,10 +57,11 @@ class NewsFeed(ListView):
     model = News
     template_name = 'djangogramm/news.html'
     context_object_name = 'news'
+    paginate_by = 15
 
     def get_queryset(self):
-        followed_users = [follow.followed for follow in Following.objects.filter(follower=self.request.user)]
-        return News.objects.filter(user__in=followed_users).order_by('-time')[:20].select_related('user')
+        return (News.objects.filter(user__my_followers__follower=self.request.user).
+                order_by('-time').select_related('user'))
 
 
 class UserView(LoginRequiredMixin, DetailView):
@@ -129,7 +133,6 @@ class CreatePost(LoginRequiredMixin, FormView):
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
-        print(form.errors)
         if form.is_valid():
             return self.form_valid(form)
         else:
@@ -152,25 +155,36 @@ def set_active(request, username, key):
 def post_like(request):
     post_id = request.POST['post_id']
     post = Post.objects.get(id=post_id)
-    user = request.user
-    is_liked = post.likes.filter(id=user.pk).first()
-    if is_liked:
-        post.likes.remove(user)
-    else:
-        post.likes.add(user)
+    post.likes.add(request.user)
+    return JsonResponse(data={'status': 200, 'number_likes': post.likes.count()})
+
+
+def post_unlike(request):
+    post_id = request.POST['post_id']
+    post = Post.objects.get(id=post_id)
+    post.likes.remove(request.user)
     return JsonResponse(data={'status': 200, 'number_likes': post.likes.count()})
 
 
 def follow(request):
     user_to_follow = User.objects.get(id=request.POST['user_to_follow'])
-    is_followed = Following.objects.filter(follower=request.user, followed=user_to_follow).first()
-    if is_followed:
-        is_followed.delete()
+    try:
+        with transaction.atomic():
+            Following.objects.create(follower=request.user, followed=user_to_follow)
+            News.objects.create(user=request.user, action='subscribed to', followed_user=user_to_follow)
+    except IntegrityError:
+        pass
+    return JsonResponse(data={'status': 200,
+                              'number_followers': Following.objects.filter(followed=user_to_follow).count()})
+
+
+def unfollow(request):
+    user_to_follow = User.objects.get(id=request.POST['user_to_follow'])
+    try:
+        Following.objects.get(follower=request.user, followed=user_to_follow).delete()
         News.objects.create(user=request.user, action='unsubscribed from', followed_user=user_to_follow)
-    else:
-        Following.objects.create(follower=request.user, followed=user_to_follow)
-        News.objects.create(user=request.user, action='subscribed to', followed_user=user_to_follow)
-    user_to_follow.refresh_from_db()
+    except Following.DoesNotExist:
+        pass
     return JsonResponse(data={'status': 200,
                               'number_followers': Following.objects.filter(followed=user_to_follow).count()})
 

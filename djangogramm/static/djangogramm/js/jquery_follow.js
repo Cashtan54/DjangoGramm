@@ -6,7 +6,7 @@ var form = $('.follow_form');
         data.user_to_follow = $(this).data('user_to_follow');
         var csrf_token = $('.follow_form [name="csrfmiddlewaretoken"]').val();
         data["csrfmiddlewaretoken"] = csrf_token;
-        var url = form.attr("action");
+        var url = '/user/follow/';
 
         $.ajax({
             url: url,
@@ -33,7 +33,7 @@ var form = $('.follow_form');
         data.user_to_follow = $(this).data('user_to_follow');
         var csrf_token = $('.follow_form [name="csrfmiddlewaretoken"]').val();
         data["csrfmiddlewaretoken"] = csrf_token;
-        var url = form.attr("action");
+        var url = '/user/unfollow/';
 
         $.ajax({
             url: url,

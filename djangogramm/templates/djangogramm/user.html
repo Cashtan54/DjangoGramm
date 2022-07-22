@@ -21,7 +21,7 @@
     <a href="{% url 'create_post' %}" class="btn btn-primary">Create post</a>
     {% else %}
         {% if is_followed %}
-        <form action="{% url 'follow' %}" class="follow_form" method="post">{% csrf_token %}
+        <form class="follow_form" method="post">{% csrf_token %}
             <button type="submit" class="followed"
                  data-user_to_follow={{profile.id}}>
                 <span>Unfollow</span></button>

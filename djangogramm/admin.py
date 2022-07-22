@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import User, Post, Image, Tag
+from .models import *
 
 
 @admin.register(User)
@@ -45,3 +45,10 @@ class ImageAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     search_fields = ('name',)
+
+
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'action', 'time', 'followed_user', 'post')
+    list_filter = ('time',)
+
