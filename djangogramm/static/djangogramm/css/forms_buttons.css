@@ -1,23 +1,46 @@
 .like_form button{
     font-size: 24px;
+    width: auto;
+	height: 40px;
+	border-radius: 15px;
+    border: none;
+    vertical-align:middle;
+    padding: 10px;
+    padding-top: 0px;
 }
 
+
 .like_form button.liked {
-    background: red;
+    background: #0d6efd;
+    color: white;
+}
+
+.like_form button.liked svg {
+    color: white;
 }
 
 .like_form button.not_liked {
-    background: white;
+    background: #A0A0A0;
 }
+
 
 .follow_form button {
     font-size: 24px;
+    width: 150px;
+	height: 40px;
+	border-radius: 15px;
+    border: none;
+    vertical-align:middle;
+    padding: 10px;
+    padding-top: 0px;
 }
 
 .follow_form button.followed {
-    background: red;
+    background: #0d6efd;
+    color: white;
+
 }
 
 .follow_form button.not_followed {
-    background: blue;
+    background: #A0A0A0;
 }

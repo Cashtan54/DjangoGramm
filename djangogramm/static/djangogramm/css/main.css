@@ -1,5 +1,12 @@
 body {
-    background: #5F9EA0;
+    background: #C8C8C8;
+}
+
+.body_content {
+    width: 80%;
+    height: auto;
+    margin-left: auto;
+    padding-left: 1%;
 }
 
 ul {
@@ -8,13 +15,14 @@ ul {
 
 aside {
     float: left;
-    background: #B8860B;
+    background: #330099;
     width: 20%;
     padding: 2%;
-    height: auto;
+    height: 100vh;
     color: #fff;
     border-right: 5px solid #00008B;
     display: inline-block;
+    position: fixed;
 }
 
 aside .menu {
@@ -45,9 +53,6 @@ aside li {
     color: #fff;
 }
 
-#user{
-    height: 300px;
-}
 
 .avatar {
     float: right;
