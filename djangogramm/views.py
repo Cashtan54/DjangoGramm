@@ -18,6 +18,7 @@ class SignUpView(CreateView):
 
     def form_valid(self, form):
         form.instance.is_active = False
+        form.instance.profile_photo = 'https://res.cloudinary.com/dsc8n66p9/image/upload/v1658503584/avatars/user_icon_msyg0x.png'
         return super().form_valid(form)
 
     def get_success_url(self):

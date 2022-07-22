@@ -15,7 +15,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True, db_index=True)
     slug = AutoSlugField(populate_from='username', unique=True, verbose_name='URL')
     bio = models.CharField(max_length=250, null=True)
-    profile_photo = CloudinaryField('image', folder=f'avatars/')
+    profile_photo = CloudinaryField('image', folder=f'avatars/', blank=True, null=True)
 
     def __str__(self):
         return self.username

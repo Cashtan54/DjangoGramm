@@ -5,11 +5,7 @@
 
     <div class="post">
         <div class="post_user">
-            {% if post.user.profile_photo %}
            <img src="{{ post.user.profile_photo.url }}" alt="Не работает" class="post_user_img">
-            {% else %}
-            <img src="{% static 'djangogramm/img/user_icon.png' %}" alt="Не работает" class="post_user_img">
-            {% endif %}
             <div class="post_user_data">
                 <a href="{% url 'user' user_slug=post.user.slug %}" class="post_user_link">{{ post.user.username }}</a>
                 <p>Followers: <span class="followers_counter">{{ post.user.my_followers.all.count }}</span></p>
