@@ -14,7 +14,7 @@
     margin-left: 10px;
     padding-top: 0px;
     position: inherit;
-    margin-top: -5%;
+    margin-top: -3%;
 }
 
 .post_user_link {
@@ -23,11 +23,17 @@
 }
 
 .followers_counter {
-    font-size: 20px;
+    font-size: 15px;
 }
 
-.post_created_date {
+.followers_counter_user {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.post_user_data .post_created_date {
     font_size: 15px;
+    font-weight: normal;
 }
 
 .post_img {

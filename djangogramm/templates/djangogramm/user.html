@@ -15,7 +15,7 @@
     {% if profile.bio %}
     <p><h3>{{ profile.bio }}</h3></p>
     {% endif %}
-    <h3>Followers: <span class="followers_counter">{{number_followers}}</span></h3>
+    <h3>Followers: <span class="followers_counter_user">{{number_followers}}</span></h3>
     {% if user.username == profile.username %}
     <a href="{% url 'user_edit' %}" class="btn btn-primary">Edit profile</a>
     <a href="{% url 'create_post' %}" class="btn btn-primary">Create post</a>
