@@ -7,10 +7,8 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    <h4>New in our site?</h4>
-    <a href="{% url 'sign_up' %}" class="btn btn-primary">Sign up</a>
 
 {% endblock %}

@@ -1,7 +1,7 @@
 {% load bootstrap_icons %}
 {% load cloudinary %}
 {% load static %}
-
+{% load humanize %}
 
     <div class="post">
         <div class="post_user">
@@ -9,7 +9,7 @@
             <div class="post_user_data">
                 <a href="{% url 'user' user_slug=post.user.slug %}" class="post_user_link">{{ post.user.username }}</a>
                 <p>Followers: <span class="followers_counter">{{ post.user.my_followers.all.count }}</span></p>
-                <p class="post_created_date">{{ post.created_date }}</p>
+                <p class="post_created_date">{{ post.created_date|naturaltime }}</p>
             </div>
         </div>
         <div class="post_content">

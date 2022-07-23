@@ -7,10 +7,7 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    <h4>Already have an account?</h4>
-    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
-
-    {% endblock %}
+{% endblock %}
