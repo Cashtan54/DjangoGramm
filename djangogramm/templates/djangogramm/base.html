@@ -24,9 +24,10 @@
 </head>
 <body>
     <aside>
+        <div class="image-logo">
         <a href="{% url 'feed' %}"><img src="{% static 'djangogramm/img/logo.jpg' %}" alt="Logo"></a>
+        </div>
         <span class="logo">DjangoGramm</span>
-        <h4>Navigation</h4>
         <ul class="menu">
             {% if user.is_authenticated %}
             <a href="{% url 'user' user_slug=user.slug %}"><li>{% bs_icon 'person-video2' %}My profile</li></a>
