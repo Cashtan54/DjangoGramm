@@ -17,7 +17,7 @@
             <img src="{{image.image.url}}" alt="OOps" class="post_img">
         {% endfor %}
         <p class="post_text">{{ post.text }}</p>
-            <form class="like_form" method="post">{% csrf_token %}
+            <form action="{% if user in post.likes.all %}{% url 'post_unlike' %}{% else %}{% url 'post_like' %}{% endif %}" class="like_form" method="post">{% csrf_token %}
                 <button type="submit" class="{% if user in post.likes.all %}liked{% else %}not_liked{% endif %}"
                         data-post_id={{post.id}}
                 >{% bs_icon 'heart-fill' size='1em' %}<span>{{post.likes.count}}</span></button>

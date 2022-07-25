@@ -6,7 +6,7 @@ var form = $('.follow_form');
         data.user_to_follow = $(this).data('user_to_follow');
         var csrf_token = $('.follow_form [name="csrfmiddlewaretoken"]').val();
         data["csrfmiddlewaretoken"] = csrf_token;
-        var url = '/user/follow/';
+        var url = form.attr('action');
 
         $.ajax({
             url: url,
@@ -22,6 +22,7 @@ var form = $('.follow_form');
             success: function(json){
             $(this).removeClass('not_followed').addClass('followed');
             $(this).find('span').text('Unfollow');
+            $('.follow_form').attr('action', '/user/unfollow/')
             $('#user').find('span.followers_counter').text(json.number_followers);
             $('div.post_user').find('span.followers_counter').text(json.number_followers)
             }
@@ -33,7 +34,7 @@ var form = $('.follow_form');
         data.user_to_follow = $(this).data('user_to_follow');
         var csrf_token = $('.follow_form [name="csrfmiddlewaretoken"]').val();
         data["csrfmiddlewaretoken"] = csrf_token;
-        var url = '/user/unfollow/';
+        var url = form.attr('action');
 
         $.ajax({
             url: url,
@@ -44,6 +45,7 @@ var form = $('.follow_form');
             success: function(json){
                 $(this).removeClass('followed').addClass('not_followed');
                 $(this).find('span').text('Follow');
+                $('.follow_form').attr('action', '/user/follow/')
                 $('#user').find('span.followers_counter').text(json.number_followers);
                 $('div.post_user').find('span.followers_counter').text(json.number_followers);
             }

@@ -20,19 +20,12 @@
     <a href="{% url 'user_edit' %}" class="btn btn-primary">Edit profile</a>
     <a href="{% url 'create_post' %}" class="btn btn-primary">Create post</a>
     {% else %}
-        {% if is_followed %}
-        <form class="follow_form" method="post">{% csrf_token %}
-            <button type="submit" class="followed"
-                 data-user_to_follow={{profile.id}}>
-                <span>Unfollow</span></button>
-        </form>
-        {% else %}
-            <form action="{% url 'follow' %}" class="follow_form" method="post">{% csrf_token %}
-                <button type="submit" class="not_followed"
+        <form action="{% if is_followed %}{% url 'unfollow' %}{% else %}{% url 'follow' %}{% endif %}"
+              class="follow_form" method="post">{% csrf_token %}
+            <button type="submit" class="{% if is_followed %}followed{% else %}not_followed{% endif %}"
                     data-user_to_follow={{profile.id}}>
-                    <span>Follow</span></button>
-            </form>
-        {% endif %}
+                <span>{% if is_followed %}Unfollow{% else %}Follow{% endif %}</span></button>
+        </form>
     {% endif %}
     <br><br><br><br>
     <h2>My posts</h2>

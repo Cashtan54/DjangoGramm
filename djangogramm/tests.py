@@ -80,7 +80,6 @@ class EditUserTest(Settings):
         self.user.refresh_from_db()
         self.assertEqual(self.user.bio, 'PRIVET')
         self.assertEqual(response["Location"], reverse('user', args=[self.user.slug]))
-        self.assertIsInstance(self.user.profile_photo, CloudinaryResource)
 
 
 class CreatePostTest(Settings):

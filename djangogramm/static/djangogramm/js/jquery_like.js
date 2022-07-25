@@ -6,7 +6,7 @@ var form = $('.like_form');
         data.post_id = $(this).data('post_id');
         var csrf_token = $('.like_form [name="csrfmiddlewaretoken"]').val();
         data["csrfmiddlewaretoken"] = csrf_token;
-        var url = '/post/like/';
+        var url = form.attr("action");
 
         $.ajax({
             url: url,
@@ -22,6 +22,7 @@ var form = $('.like_form');
             success: function(json){
             $(this).removeClass('not_liked').addClass('liked');
             $(this).find('span').text(json.number_likes);
+            $('.like_form').attr('action', '/post/unlike/');
             }
         })
     });
@@ -31,7 +32,7 @@ var form = $('.like_form');
         data.post_id = $(this).data('post_id');
         var csrf_token = $('.like_form [name="csrfmiddlewaretoken"]').val();
         data["csrfmiddlewaretoken"] = csrf_token;
-        var url = '/post/unlike/';
+        var url = form.attr("action");
 
         $.ajax({
             url: url,
@@ -42,6 +43,7 @@ var form = $('.like_form');
             success: function(json){
                 $(this).removeClass('liked').addClass('not_liked');
                 $(this).find('span').text(json.number_likes);
+                $('.like_form').attr('action', '/post/like/');
             }
         })
     });
