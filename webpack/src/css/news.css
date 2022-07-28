@@ -1,0 +1,13 @@
+.news {
+    height: auto;
+    padding: 1%;
+    font-size: 20px;
+}
+
+.news_user {
+    color: black;
+}
+
+.news_user:hover {
+    color: black;
+}

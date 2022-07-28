@@ -1,217 +1,109 @@
-/*!*****************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/forms_buttons.css ***!
-  \*****************************************************************************/
-.like_form button{
-    font-size: 24px;
-    width: auto;
-	height: 40px;
-	border-radius: 15px;
-    border: none;
-    vertical-align:middle;
-    padding: 10px;
-    padding-top: 0px;
-}
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/css/forms_buttons.css":
+/*!***********************************!*\
+  !*** ./src/css/forms_buttons.css ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-.like_form button.liked {
-    background: #0d6efd;
-    color: white;
-}
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack:///./src/css/forms_buttons.css?");
 
-.like_form button.liked svg {
-    color: white;
-}
+/***/ }),
 
-.like_form button.not_liked {
-    background: #A0A0A0;
-}
+/***/ "./src/css/main.css":
+/*!**************************!*\
+  !*** ./src/css/main.css ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack:///./src/css/main.css?");
 
-.follow_form button {
-    font-size: 24px;
-    width: 150px;
-	height: 40px;
-	border-radius: 15px;
-    border: none;
-    vertical-align:middle;
-    padding: 10px;
-    padding-top: 0px;
-}
+/***/ }),
 
-.follow_form button.followed {
-    background: #0d6efd;
-    color: white;
+/***/ "./src/css/news.css":
+/*!**************************!*\
+  !*** ./src/css/news.css ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-}
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack:///./src/css/news.css?");
 
-.follow_form button.not_followed {
-    background: #A0A0A0;
-}
-/*!********************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/main.css ***!
-  \********************************************************************/
-body {
-    background: #C8C8C8;
-}
+/***/ }),
 
-.body_content {
-    width: 80%;
-    height: auto;
-    margin-left: auto;
-    padding-left: 1%;
-}
+/***/ "./src/css/posts.css":
+/*!***************************!*\
+  !*** ./src/css/posts.css ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-ul {
-    list-style-type: none;
-}
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack:///./src/css/posts.css?");
 
-aside {
-    background: #330099;
-    width: 20%;
-    padding: 2%;
-    height: 100vh;
-    color: #fff;
-    border-right: 5px solid #00008B;
-    display: inline-block;
-    position: fixed;
-}
+/***/ }),
 
-aside .menu {
-    font-size: 20px;
-    margin-top: 20px;
-}
+/***/ "./src/css/main_css.js":
+/*!*****************************!*\
+  !*** ./src/css/main_css.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-aside .menu a {
-    text-decoration: none;
-}
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _forms_buttons_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./forms_buttons.css */ \"./src/css/forms_buttons.css\");\n/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main.css */ \"./src/css/main.css\");\n/* harmony import */ var _news_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./news.css */ \"./src/css/news.css\");\n/* harmony import */ var _posts_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./posts.css */ \"./src/css/posts.css\");\n\n\n\n\n\n\n//# sourceURL=webpack:///./src/css/main_css.js?");
 
-aside .menu a:hover {
-    font-size: 25px;
-}
+/***/ })
 
-aside .image-logo img {
-    width: 150px;
-    margin-left: 33px;
-}
-
-
-aside .logo {
-    font-size: 30px;
-    font-weight: bold;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-aside li {
-    color: #fff;
-}
-
-
-.avatar {
-    float: right;
-    weight: 300px;
-    height: 300px;
-}
-
-.list-pages {
-	text-align: center;
-	margin-top: 20px
-}
-.list-pages ul {
-	padding: 0;
-	list-style: none;
-}
-.list-pages ul li {
-    padding-top: 0;
-	display: inline-block;
-}
-.list-pages a {
-	color: #000;
-	font-size: 30px;
-	text-decoration: none;
-}
-.list-pages .page-num, .page-num-selected {
-	display: inline-block;
-	width: 50px;
-	height: 50px;
-	border: 1px solid #d0d0d0;
-	border-radius: 30px;
-}
-.list-pages .page-num-selected {
-	border: none;
-	color: #000;
-	font-size: 25px;
-}
-
-/*!********************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/news.css ***!
-  \********************************************************************/
-.news {
-    height: auto;
-    padding: 1%;
-    font-size: 20px;
-}
-
-.news_user {
-    color: black;
-}
-
-.news_user:hover {
-    color: black;
-}
-
-/*!*********************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/posts.css ***!
-  \*********************************************************************/
-.post {
-    text-align: left;
-    border-bottom: 1px solid;
-    padding: 1%;
-}
-
-.post_user_data {
-    display: inline-block;
-}
-
-.post_user .post_user_img {
-    height: 150px;
-    border-radius: 10px;
-    margin-left: 10px;
-    padding-top: 0px;
-    position: inherit;
-    margin-top: -3%;
-}
-
-.post_user_link {
-    font-size: 25px;
-    color: black;
-}
-
-.followers_counter {
-    font-size: 15px;
-}
-
-.followers_counter_user {
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.post_user_data .post_created_date {
-    font_size: 15px;
-    font-weight: normal;
-}
-
-.post_img {
-    height: 250px;
-    margin: 10px;
-}
-
-.post_text {
-    font-size:15px;
-    font-family: 'Montserrat';
-}
-
-.post_content {
-    margin-top: 5px;
-}
-
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/css/main_css.js");
+/******/ 	
+/******/ })()
+;
