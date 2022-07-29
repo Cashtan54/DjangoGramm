@@ -22,8 +22,8 @@ var form = $('.follow_form');
             success: function(json){
             $(this).removeClass('not_followed').addClass('followed');
             $(this).find('span').text('Unfollow');
-            $('.follow_form').attr('action', '/user/unfollow/')
-            $('#user').find('span.followers_counter').text(json.number_followers);
+            $('.follow_form').attr('action', '/user/unfollow/');
+            $('div.user').find('span.followers_counter_user').text(json.number_followers);
             $('div.post_user').find('span.followers_counter').text(json.number_followers)
             }
         })
@@ -45,8 +45,8 @@ var form = $('.follow_form');
             success: function(json){
                 $(this).removeClass('followed').addClass('not_followed');
                 $(this).find('span').text('Follow');
-                $('.follow_form').attr('action', '/user/follow/')
-                $('#user').find('span.followers_counter').text(json.number_followers);
+                $('.follow_form').attr('action', '/user/follow/');
+                $('div.user').find('span.followers_counter_user').text(json.number_followers);
                 $('div.post_user').find('span.followers_counter').text(json.number_followers);
             }
         })
