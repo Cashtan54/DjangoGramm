@@ -128,9 +128,7 @@ EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
 
 AUTHENTICATION_BACKENDS = [
     'djangogramm.utils.EmailBackend',
-    'social_core.backends.google.GoogleOpenId',
     'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.google.GoogleOAuth',
     'social_core.backends.github.GithubOAuth2',
 ]
 
