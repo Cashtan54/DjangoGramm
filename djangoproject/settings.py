@@ -16,8 +16,6 @@ from dotenv import load_dotenv
 import sys
 import cloudinary
 
-import djangogramm.utils
-
 config = cloudinary.config(secure=True)
 
 import cloudinary.uploader
