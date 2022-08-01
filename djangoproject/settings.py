@@ -144,7 +144,6 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
 )
 
-
 SOCIAL_AUTH_GITHUB_KEY = 'bb11fa5c23ded0ca092e'
 SOCIAL_AUTH_GITHUB_SECRET = getenv('SOCIAL_AUTH_GITHUB_SECRET')
 
