@@ -2,7 +2,7 @@ from django.contrib.auth.backends import ModelBackend, UserModel
 from django.core.signing import Signer
 from django.db.models import Q
 from re import findall
-from .models import Post, Image, Tag
+from .models import Post, Image, Tag, User
 from django.core.mail import send_mail
 from django.conf import settings
 
@@ -47,3 +47,10 @@ def send_email(email, username):
     link = f'http://djangogramm-romantsov.herokuapp.com/sign_up/{username}/{key}'
     message = f'Click the link to validate email adress\n{link}'
     send_mail(subject, message, settings.EMAIL_HOST_USER, [email, ])
+
+
+def add_email(backend, user, response, *args, **kwargs):
+    if backend.name == 'github':
+        profile = User(id=user.id)
+        profile.email = response.get('email')
+        profile.save()
