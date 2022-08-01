@@ -10,6 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from cloudinary.forms import cl_init_js_callbacks
 from django.db.utils import IntegrityError
 from django.db import transaction
+from django.conf import settings
 
 
 class SignUpView(CreateView):
@@ -18,7 +19,7 @@ class SignUpView(CreateView):
 
     def form_valid(self, form):
         form.instance.is_active = False
-        form.instance.profile_photo = 'https://res.cloudinary.com/dsc8n66p9/image/upload/v1658503584/avatars/user_icon_msyg0x.png'
+        form.instance.profile_photo = settings.DEFAULT_USER_AVATAR
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -183,7 +184,6 @@ def unfollow(request):
     user_to_follow = User.objects.get(id=request.POST['user_to_follow'])
     try:
         Following.objects.get(follower=request.user, followed=user_to_follow).delete()
-        News.objects.create(user=request.user, action='unsubscribed from', followed_user=user_to_follow)
     except Following.DoesNotExist:
         pass
     return JsonResponse(data={'status': 200,

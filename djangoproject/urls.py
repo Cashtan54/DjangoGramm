@@ -22,6 +22,7 @@ handler404 = 'djangogramm.views.handler404'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('djangogramm.urls')),
+    path('', include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:

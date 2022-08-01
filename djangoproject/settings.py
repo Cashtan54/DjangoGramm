@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django_bootstrap_icons',
     'debug_toolbar',
     'cloudinary',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -127,7 +128,16 @@ EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
 
 AUTHENTICATION_BACKENDS = [
     'djangogramm.utils.EmailBackend',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.github.GithubOAuth2',
 ]
+
+SOCIAL_AUTH_GITHUB_KEY = 'bb11fa5c23ded0ca092e'
+SOCIAL_AUTH_GITHUB_SECRET = getenv('SOCIAL_AUTH_GITHUB_SECRET')
+
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
 LOGIN_URL = '/login/'
 
@@ -159,10 +169,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
+DEFAULT_USER_AVATAR = 'https://res.cloudinary.com/dsc8n66p9/image/upload/v1658503584/avatars/user_icon_msyg0x.png'
 
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
 
 
 if 'test' in sys.argv:

@@ -27,14 +27,15 @@ class Following(models.Model):
     time = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ('follower', 'followed',)
+        unique_together = ('follower', 'followed')
 
 
 class News(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='news')
     actions = [
         ('subscribe', 'subscribed to'),
-        ('post', 'shared a ')
+        ('post', 'shared a '),
+        ('avatar', 'changed avatar')
     ]
     action = models.CharField(max_length=255, choices=actions)
     time = models.DateTimeField(auto_now=True)
