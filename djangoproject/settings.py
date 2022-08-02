@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'djangogramm-romantsov.herokuapp.com']
 
@@ -127,9 +127,9 @@ EMAIL_HOST_USER = 'romantsovdmytro@ukr.net'
 EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
 
 AUTHENTICATION_BACKENDS = [
-    'djangogramm.utils.EmailBackend',
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.github.GithubOAuth2',
+    'djangogramm.utils.EmailBackend',
 ]
 
 SOCIAL_AUTH_PIPELINE = (
@@ -146,6 +146,9 @@ SOCIAL_AUTH_PIPELINE = (
 
 SOCIAL_AUTH_GITHUB_KEY = 'bb11fa5c23ded0ca092e'
 SOCIAL_AUTH_GITHUB_SECRET = getenv('SOCIAL_AUTH_GITHUB_SECRET')
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '37802371077-bjv062q0air06b1ie4voaldajjjg9jqd.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
