@@ -147,6 +147,8 @@ SOCIAL_AUTH_PIPELINE = (
 SOCIAL_AUTH_GITHUB_KEY = 'bb11fa5c23ded0ca092e'
 SOCIAL_AUTH_GITHUB_SECRET = getenv('SOCIAL_AUTH_GITHUB_SECRET')
 
+SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
+
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '37802371077-bjv062q0air06b1ie4voaldajjjg9jqd.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
@@ -187,8 +189,6 @@ DEFAULT_USER_AVATAR = 'https://res.cloudinary.com/dsc8n66p9/image/upload/v165850
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-
-
 
 if 'test' in sys.argv:
     DATABASES['default'] = {

@@ -5,7 +5,11 @@
 
     <div class="post">
         <div class="post_user">
-           <img src="{{ post.user.profile_photo.url }}" alt="Не работает" class="post_user_img">
+            {% if post.user.profile_photo.url %}
+                <img src="{{ post.user.profile_photo.url }}" alt="Не работает" class="post_user_img">
+            {% else %}
+                <img src="https://res.cloudinary.com/dsc8n66p9/image/upload/v1658503584/avatars/user_icon_msyg0x.png" alt="Не работает" class="post_user_img">
+            {% endif %}
             <div class="post_user_data">
                 <a href="{% url 'user' user_slug=post.user.slug %}" class="post_user_link">{{ post.user.username }}</a>
                 <p>Followers: <span class="followers_counter">{{ post.user.my_followers.all.count }}</span></p>

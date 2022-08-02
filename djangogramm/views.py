@@ -19,7 +19,7 @@ class SignUpView(CreateView):
 
     def form_valid(self, form):
         form.instance.is_active = False
-        form.instance.profile_photo = settings.DEFAULT_USER_AVATAR
+        # form.instance.profile_photo = settings.DEFAULT_USER_AVATAR
         return super().form_valid(form)
 
     def get_success_url(self):
