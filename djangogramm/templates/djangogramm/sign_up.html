@@ -1,4 +1,5 @@
 {% extends 'djangogramm/base.html' %}
+{% load static %}
 
 {% block title %}Registration{% endblock %}
 
@@ -10,4 +11,7 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+<br>
+<a href="{% url "social:begin" "github" %}"><img src="{% static 'djangogramm/img/github.png' %}" alt="GitHub" height="50"></a>
+<a href="{% url "social:begin" "google-oauth2" %}"><img src="{% static 'djangogramm/img/google.png' %}" alt="Google+" height="50"></a>
 {% endblock %}
