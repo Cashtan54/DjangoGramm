@@ -7,7 +7,6 @@ from django.views.generic import CreateView, ListView, DetailView, FormView
 from .forms import *
 from .utils import *
 from django.contrib.auth.mixins import LoginRequiredMixin
-from cloudinary.forms import cl_init_js_callbacks
 from django.db.utils import IntegrityError
 from django.db import transaction
 from django.conf import settings
@@ -19,7 +18,6 @@ class SignUpView(CreateView):
 
     def form_valid(self, form):
         form.instance.is_active = False
-        # form.instance.profile_photo = settings.DEFAULT_USER_AVATAR
         return super().form_valid(form)
 
     def get_success_url(self):
